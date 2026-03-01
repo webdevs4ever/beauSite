@@ -10,6 +10,12 @@
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
+    <script>
+      (function() {
+        var p = new URLSearchParams(window.location.search).get('p');
+        if (p) window.history.replaceState(null, null, '/beauSite' + p);
+      })();
+    </script>
     <script type="module" crossorigin src="/beauSite/assets/index-DJUsaXb7.js"></script>
     <link rel="stylesheet" crossorigin href="/beauSite/assets/index-CfLH4bzZ.css">
   </head>
