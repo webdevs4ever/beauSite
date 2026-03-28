@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 
 const ICON_MAP = {
   form: '📋',
-  dollar: '💵',
+  school: '🏫',
   home: '🏠',
   star: '⭐',
 }

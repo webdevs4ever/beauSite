@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { sanityClient, SITE_SETTINGS_QUERY, HERO_CARDS_QUERY, ANNOUNCEMENTS_QUERY } from '../lib/sanity'
 import HeroCard from '../components/HeroCard'
 import AnnouncementCard from '../components/AnnouncementCard'
 
 // ── Static fallback data (used before Sanity is wired up) ──────────────────
 const FALLBACK_SETTINGS = {
-  tagline: 'legal assistance and advocacy for your child',
-  contactUrl: 'mailto:km@zimnymccoylaw.com',
+  tagline: 'SPECIAL EDUCATION ATTORNEYS',
+  contactUrl: '/login',
 }
 
 const FALLBACK_CARDS = [
@@ -19,9 +20,9 @@ const FALLBACK_CARDS = [
   },
   {
     _id: '2',
-    title: 'School admissions',
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    icon: 'dollar',
+    title: 'Schedule and Consultation',
+    description: 'Complete the portal form to request your next meeting or update',
+    icon: 'school',
     pageLink: '/portal',
   },
 ]
@@ -32,10 +33,23 @@ const FALLBACK_ANNOUNCEMENTS = [
     title: 'MEET THE TEAM ⚡',
     body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
     ctaText: 'FOLLOW US ON SOCIAL',
-    ctaUrl: '#',
+    ctaUrl: '/login',
   },
 ]
 // ──────────────────────────────────────────────────────────────────────────
+
+function ensureRequiredCards(cards) {
+  const nextCards = [...cards]
+  const existingLinks = new Set(cards.map((card) => card.pageLink))
+
+  for (const fallbackCard of FALLBACK_CARDS) {
+    if (!existingLinks.has(fallbackCard.pageLink)) {
+      nextCards.push(fallbackCard)
+    }
+  }
+
+  return nextCards
+}
 
 export default function Home() {
   const [settings, setSettings] = useState(FALLBACK_SETTINGS)
@@ -55,7 +69,7 @@ export default function Home() {
     ])
       .then(([s, c, a]) => {
         if (s) setSettings(s)
-        if (c?.length) setCards(c)
+        if (c?.length) setCards(ensureRequiredCards(c))
         if (a?.length) setAnnouncements(a)
       })
       .catch(console.error)
@@ -81,7 +95,7 @@ export default function Home() {
         {/* Header */}
         <header className="text-center pt-6">
           <h1 className="font-display text-4xl font-black text-brand-teal tracking-tight">
-            Zimny Mccoy Law
+            Zimny McCoy, PLLC.
           </h1>
           <p className="text-brand-teal/80 mt-2 text-sm font-medium tracking-widest uppercase">
             {settings.tagline}
@@ -96,14 +110,14 @@ export default function Home() {
         </section>
 
         {/* Contact Button */}
-        <a
-          href={settings.contactUrl}
+        <Link
+          to="/login"
           className="w-full text-center bg-brand-blue hover:bg-brand-blue-dark
                      text-white font-semibold py-4 rounded-2xl transition-colors
                      shadow-lg shadow-blue-900/30"
         >
           Contact Us
-        </a>
+        </Link>
 
         {/* Announcements */}
         <section>
