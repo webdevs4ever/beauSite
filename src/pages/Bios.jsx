@@ -3,17 +3,17 @@ import { useNavigate } from 'react-router-dom'
 const PARTNERS = [
   {
     id: 1,
-    name: 'Partner Name',
+    name: 'Kimberly McCoy',
     title: 'Managing Partner',
     bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
-    image: null,
+    image: '/kim_profile.png',
   },
   {
     id: 2,
-    name: 'Partner Name',
-    title: 'Partner',
+    name: 'Wendy Zimny',
+    title: 'Managing Partner',
     bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
-    image: null,
+    image: '/wendy_profile.jpeg',
   },
   {
     id: 3,
