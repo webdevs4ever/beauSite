@@ -11,7 +11,18 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 }
 
+const rawSiteNamespace = import.meta.env.VITE_FIREBASE_SITE_NAMESPACE || 'beausite'
+
+export const firebaseSiteNamespace = rawSiteNamespace
+  .trim()
+  .toLowerCase()
+  .replace(/[^a-z0-9_-]/g, '-')
+
 export const isFirebaseConfigured = Object.values(firebaseConfig).every(Boolean)
+
+export function getScopedCollectionName(collectionName) {
+  return `${firebaseSiteNamespace}_${collectionName}`
+}
 
 const app = isFirebaseConfigured
   ? getApps().length

@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom'
 
-export default function AnnouncementCard({ title, body, ctaText, ctaUrl }) {
+export default function AnnouncementCard({ title, titleUrl, body, ctaText, ctaUrl }) {
   const isInternalLink = ctaUrl?.startsWith('/')
 
   return (
     <div className="glass rounded-2xl p-6 text-center">
-      <h3 className="font-display text-xl font-bold text-brand-teal mb-2">{title}</h3>
+      <h3 className="font-display text-xl font-bold text-brand-teal mb-2">
+        {titleUrl ? <Link to={titleUrl}>{title}</Link> : title}
+      </h3>
       <p className="text-white/70 text-sm leading-relaxed mb-4">{body}</p>
       {ctaText && ctaUrl && isInternalLink ? (
         <Link

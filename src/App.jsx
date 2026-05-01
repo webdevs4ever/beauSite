@@ -3,6 +3,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import SpecialNeeds from './pages/SpecialNeeds'
 import Portal from './pages/Portal'
+import Bios from './pages/Bios'
 import NotFound from './pages/NotFound'
 
 export default function App() {
@@ -12,6 +13,7 @@ export default function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/special-needs" element={<SpecialNeeds />} />
       <Route path="/portal" element={<Portal />} />
+      <Route path="/bios" element={<Bios />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   )

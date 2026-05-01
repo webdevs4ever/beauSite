@@ -31,6 +31,7 @@ const FALLBACK_ANNOUNCEMENTS = [
   {
     _id: 'a1',
     title: 'MEET THE TEAM ⚡',
+    titleUrl: '/bios',
     body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
     ctaText: 'FOLLOW US ON SOCIAL',
     ctaUrl: '/login',

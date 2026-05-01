@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
-import { db, isFirebaseConfigured } from '../lib/firebase'
+import { db, getScopedCollectionName, isFirebaseConfigured } from '../lib/firebase'
 
 export default function Portal() {
   const navigate = useNavigate()
@@ -30,7 +30,7 @@ export default function Portal() {
     setError(null)
 
     try {
-      await addDoc(collection(db, 'portal_submissions'), {
+      await addDoc(collection(db, getScopedCollectionName('portal_submissions')), {
         ...formData,
         createdAt: serverTimestamp(),
       })
