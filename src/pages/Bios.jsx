@@ -1,25 +1,69 @@
 import { useNavigate } from 'react-router-dom'
+import { useState, useEffect, useRef } from 'react'
+
+function UploadingBadge() {
+  const [visible, setVisible] = useState(true)
+  const elapsed = useRef(0)
+  const timer = useRef(null)
+
+  useEffect(() => {
+    const tick = () => {
+      setVisible(v => !v)
+      elapsed.current += 1
+      const interval = elapsed.current < 6 ? 10000 : 120000
+      timer.current = setTimeout(tick, interval)
+    }
+    timer.current = setTimeout(tick, 10000)
+    return () => clearTimeout(timer.current)
+  }, [])
+
+  return (
+    <span className={`text-teal-400/60 text-xs tracking-widest transition-opacity duration-700 ${visible ? 'opacity-100' : 'opacity-0'}`}>
+      downloading...
+    </span>
+  )
+}
 
 const PARTNERS = [
   {
     id: 1,
     name: 'Kimberly McCoy',
-    title: 'Managing Partner',
-    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
+    title: 'Partner',
+    bio: `Kimberly McCoy is a dedicated special education attorney with over 17 years of experience advocating for children with disabilities and their families. She has been practicing law since her admission to the bar in 2012 and brings a unique, well-rounded perspective shaped by her extensive background in both education and law.
+
+Prior to founding The Law Firm of Zimny & McCoy, Kimberly worked at INCLUDEnyc as the Director of Parent & Family Engagement, Early Childhood, where she led programs supporting families, educators, and community stakeholders in navigating disability systems. Her work focused on empowering families with the knowledge and tools needed to secure appropriate services and supports for their children.
+
+Kimberly is both an attorney and a certified special educator, with hands-on experience across a wide range of roles in the field. Her career spans work as an early childhood evaluator, home-based ABA instructor, community school teacher, NYC Department of Education District 75 teacher, and charter school administrator. This depth of experience allows her to approach each case with a comprehensive understanding of how educational systems function—and how they can fall short for students with disabilities.
+
+In addition to her professional expertise, Kimberly is also the parent of two boys, one with autism and ADHD, giving her a deeply personal understanding of the challenges families face. She is committed to advocating with compassion, clarity, and determination to ensure that every child receives the education and support they deserve.
+
+Kimberly earned both her Bachelor's and Master's degrees in Special Education from City College and received her Juris Doctorate from Seton Hall University School of Law.`,
     image: '/kim_profile.png',
   },
   {
     id: 2,
     name: 'Wendy Zimny',
-    title: 'Managing Partner',
-    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
+    title: 'Partner',
+    bio: `Wendy has worked in special education for over 17 years. She lives in the Bronx with her son and her one-year-old Newfoundland puppy, Monty. Before co-founding Zimny McCoy, PLLC with her partners, Kimberly McCoy and Lisa Gibertoni, Wendy worked as a special education attorney for the Law Offices of H. Jeffrey Marcus for ten years, where she continues to hold an Of Counsel position.
+
+Before joining the Law Office of H. Jeffrey Marcus, Wendy worked as a Special Education teacher in New York City for nearly 7 years. She was a DOE teacher for 5 years and spent 2 years teaching at a Charter school, both located in central Harlem. Prior to working in education, Wendy worked various public interest/public service jobs, including working for the ACLU, National Lawyers Guild, and East Bay Sanctuary Covenant, and volunteered as an Auxiliary Police Officer in New York City for a year.
+
+Wendy also has two adult children, both of whom graduated from New York City public schools. Wendy's oldest child has Autism and ADHD diagnoses, and had an IEP throughout his education. Wendy has years of experience developing and implementing IEPs as a teacher, and participating in CSE meetings as a parent, in addition to over ten years' experience practicing law in the field of special education.
+
+Wendy graduated from Boston University School of Law, has a masters degree in Criminal Justice from Boston University and a masters degree in Special Education from CUNY City College. She has a BA from the University of Tennessee.`,
     image: '/wendy_profile.jpeg',
   },
   {
     id: 3,
-    name: 'Partner Name',
+    name: 'Lisa Gibertoni',
     title: 'Partner',
-    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
+    bio: `Lisa has been practicing special education law since 2012, exclusively since 2016. She has represented parents through all phases of the litigation process, up through and including federal court appeals where necessary, against school districts large and small throughout NY State. Lisa enjoys providing counsel and reassurance to parents who may be new to the legal aspects of their child's special education needs and the specific rights that they can enforce against their school districts.
+
+Lisa often says that law and education have been her two passions her whole life, but what she really enjoys is supporting people through difficult times and helping them achieve their goals. Before focusing exclusively on special education law, Lisa practiced family law both privately and as a member of the Erie County Bar Association's Aid to Indigent Prisoners Society, Inc. (more commonly known as the Assigned Counsel Program). Between college and law school, she taught SAT, LSAT, and GRE preparation courses for a well-known company and worked as a paralegal in a Connecticut law firm representing plaintiffs in asbestos injury and other toxic tort cases.
+
+Lisa is originally from Connecticut but moved to Buffalo in 2004, where she continues to live, eat wings, and root for the Bills with her husband and daughter.
+
+Lisa earned her Bachelor's from Vassar College and received her Juris Doctorate from University of Buffalo School of Law.`,
     image: null,
   },
 ]
@@ -68,8 +112,11 @@ export default function Bios() {
                   className="w-40 h-48 object-cover rounded-2xl"
                 />
               ) : (
-                <div className="w-40 h-48 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white/20 text-sm">
-                  Photo
+                <div className="w-40 h-48 rounded-2xl bg-teal-950 border border-teal-800/40 flex flex-col items-center justify-center gap-3">
+                  <span className="font-display text-4xl font-black text-teal-400 tracking-tight">
+                    {partner.name.split(' ').map(n => n[0]).join('')}
+                  </span>
+                  <UploadingBadge />
                 </div>
               )}
             </div>
