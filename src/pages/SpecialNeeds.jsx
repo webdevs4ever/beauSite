@@ -3,6 +3,12 @@ import { useNavigate } from 'react-router-dom'
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
 import { db, getScopedCollectionName, isFirebaseConfigured } from '../lib/firebase'
 
+const TIME_SLOTS = [
+  '8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM',
+  '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM',
+  '4:00 PM', '5:00 PM', '6:00 PM',
+]
+
 export default function SpecialNeeds() {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
@@ -11,12 +17,30 @@ export default function SpecialNeeds() {
     phone: '',
     notes: '',
   })
+  const [selectedTimes, setSelectedTimes] = useState([])
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState(null)
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  const [timeError, setTimeError] = useState(false)
+
+  const toggleTime = (time) => {
+    setSelectedTimes(prev => {
+      if (prev.includes(time)) {
+        setTimeError(false)
+        return prev.filter(t => t !== time)
+      }
+      if (prev.length >= 3) {
+        setTimeError(true)
+        return prev
+      }
+      setTimeError(false)
+      return [...prev, time]
+    })
   }
 
   const handleSubmit = async (e) => {
@@ -32,6 +56,7 @@ export default function SpecialNeeds() {
     try {
       await addDoc(collection(db, getScopedCollectionName('special_needs_submissions')), {
         ...formData,
+        best_times_to_call: selectedTimes,
         createdAt: serverTimestamp(),
       })
       setSuccess(true)
@@ -104,6 +129,33 @@ export default function SpecialNeeds() {
                 className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/20 focus:outline-none focus:border-brand-teal transition-colors"
                 placeholder="(555) 000-0000"
               />
+            </div>
+
+            {/* Best Times to Call */}
+            <div>
+              <label className="text-white/60 text-xs uppercase tracking-widest mb-3 block">Best Times to Call (PICK UP TO THREE)</label>
+              <div className="flex flex-wrap gap-2">
+                {TIME_SLOTS.map(time => {
+                  const selected = selectedTimes.includes(time)
+                  return (
+                    <button
+                      key={time}
+                      type="button"
+                      onClick={() => toggleTime(time)}
+                      className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-all duration-200 ${
+                        selected
+                          ? 'bg-teal-500 border-teal-400 text-white shadow-md shadow-teal-900/40'
+                          : 'bg-white/5 border-white/10 text-white/50 hover:border-teal-500/50 hover:text-white/80'
+                      }`}
+                    >
+                      {time}
+                    </button>
+                  )
+                })}
+              </div>
+              {timeError && (
+                <p className="text-red-400 text-xs mt-2">Maximum of 3 time slots allowed.</p>
+              )}
             </div>
 
             <div>
