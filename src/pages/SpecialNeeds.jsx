@@ -54,14 +54,14 @@ export default function SpecialNeeds() {
     setError(null)
 
     try {
-      await addDoc(collection(db, getScopedCollectionName('special_needs_submissions')), {
+      await addDoc(collection(db, 'special_needs_submissions'), {
         ...formData,
         best_times_to_call: selectedTimes,
         createdAt: serverTimestamp(),
       })
       setSuccess(true)
     } catch (submitError) {
-      setError('Something went wrong. Please try again.')
+      setError(submitError.message || 'Something went wrong. Please try again.')
     } finally {
       setLoading(false)
     }
