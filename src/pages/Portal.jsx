@@ -30,7 +30,7 @@ export default function Portal() {
     setError(null)
 
     try {
-      await addDoc(collection(db, getScopedCollectionName('portal_submissions')), {
+      await addDoc(collection(db, 'portal_submissions'), {
         ...formData,
         createdAt: serverTimestamp(),
       })
