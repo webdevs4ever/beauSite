@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
 // ── Why Choose Us data ────────────────────────────────────────────────────────
 const REASONS = [
@@ -45,23 +46,34 @@ const STATS = [
 ]
 
 export default function Home() {
+  const location = useLocation()
+
+  useEffect(() => {
+    const target = location.state?.scrollTo
+    if (target) {
+      setTimeout(() => {
+        document.querySelector(target)?.scrollIntoView({ behavior: 'smooth' })
+      }, 100)
+    }
+  }, [location.state])
+
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────────────────────────── */}
       <section className="bg-stone-900 min-h-[88vh] flex items-stretch">
         {/* Left panel — firm description */}
-        <div className="flex-1 flex flex-col justify-center px-8 sm:px-12 lg:px-20 py-20">
-          <p className="text-brand-bronze-light text-sm font-semibold uppercase tracking-widest mb-5">
+        <div className="flex-1 lg:w-1/2 flex flex-col justify-center px-8 sm:px-12 lg:px-20 py-20 bg-brand-warm">
+          <p className="text-brand-bronze text-sm font-semibold uppercase tracking-widest mb-5">
             Special Education Attorneys · New York City
           </p>
-          <h1 className="font-display text-4xl sm:text-5xl lg:text-[3.25rem] font-bold text-white leading-tight mb-6">
+          <h1 className="font-display text-4xl sm:text-5xl lg:text-[3.25rem] font-bold text-stone-900 leading-tight mb-6">
             Advocating for Families with Special Education Needs
           </h1>
-          <p className="text-stone-300 text-base sm:text-lg leading-relaxed mb-4 max-w-lg">
+          <p className="text-stone-600 text-base sm:text-lg leading-relaxed mb-4 max-w-lg">
             Zimny McCoy, PLLC is a New York City law firm exclusively dedicated to special education law.
             We represent families navigating IEPs, 504 plans, due process hearings, and federal court proceedings.
           </p>
-          <p className="text-stone-400 text-sm leading-relaxed mb-10 max-w-lg">
+          <p className="text-stone-500 text-sm leading-relaxed mb-10 max-w-lg">
             Our attorneys have helped thousands of NYC families secure the services, placements, and
             compensatory education their children are legally entitled to.
           </p>
@@ -74,7 +86,7 @@ export default function Home() {
             </Link>
             <a
               href="#about"
-              className="border border-white/30 hover:border-white text-white font-semibold px-8 py-4 rounded-xl text-center transition-colors"
+              className="border border-brand-bronze text-brand-bronze hover:bg-brand-bronze hover:text-white font-semibold px-8 py-4 rounded-xl text-center transition-colors"
             >
               Learn More
             </a>
@@ -82,7 +94,7 @@ export default function Home() {
         </div>
 
         {/* Right panel — attorney photo */}
-        <div className="hidden lg:block w-[42%] relative overflow-hidden">
+        <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
           <img
             src="/kim_profile.png"
             alt="Kimberly McCoy, Attorney"
@@ -100,7 +112,7 @@ export default function Home() {
       <section id="services" className="bg-white py-20 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           <p className="text-brand-bronze text-sm font-semibold uppercase tracking-widest mb-3 text-center">
-            Why Families Choose Us
+            Why Families Choose Zimny McCoy
           </p>
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-stone-900 text-center mb-14">
             Experience You Can Trust
@@ -131,42 +143,52 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── About Us ─────────────────────────────────────────────────────────── */}
-      <section id="about" className="bg-brand-warm py-20 px-4 sm:px-6">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
-          <div>
-            <p className="text-brand-bronze text-sm font-semibold uppercase tracking-widest mb-3">
-              About Our Firm
-            </p>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-stone-900 mb-6">
-              Fighting for Every Child's Right to Education
-            </h2>
-            <div className="flex flex-col gap-4 text-stone-600 text-base leading-relaxed">
-              <p>
-                Zimny McCoy, PLLC is a New York City law firm exclusively dedicated to special education law.
-                Founded by attorneys with a deep commitment to disability rights, our firm represents families
-                navigating the complexities of the Individuals with Disabilities Education Act (IDEA),
-                Section 504, and the Americans with Disabilities Act.
-              </p>
-              <p>
-                We represent parents at IEP meetings, due process hearings, and in federal court proceedings.
-                Our attorneys have successfully obtained compensatory education, appropriate placements,
-                and meaningful services for hundreds of children across New York City's five boroughs.
-              </p>
-              <p>
-                Whether you are just beginning to understand your child's rights or you are in the middle
-                of a dispute with your school district, we are here to guide and advocate for your family.
-              </p>
-            </div>
+      {/* ── About Our Firm ───────────────────────────────────────────────────── */}
+      <section id="about" className="bg-white py-20 px-4 sm:px-6">
+        <div className="max-w-4xl mx-auto text-center">
+
+          {/* Pill tag */}
+          <span className="inline-block bg-brand-warm text-brand-bronze text-xs font-semibold uppercase tracking-widest px-4 py-1.5 rounded-full mb-6">
+            Our Firm
+          </span>
+
+          <h2 className="font-display text-4xl sm:text-5xl font-bold text-stone-900 mb-6">
+            Your Special Education Experts
+          </h2>
+          <p className="text-stone-500 text-lg leading-relaxed max-w-2xl mx-auto mb-16">
+            Our attorneys share one mission: helping your child succeed. Our leadership guides a
+            broader team of professionals supporting families like yours.
+          </p>
+
+          {/* Circular profiles */}
+          <div className="flex flex-col sm:flex-row justify-center gap-14 mb-14">
+            {[
+              { src: '/kim_profile.png',    name: 'Kimberly McCoy', title: 'Founding Partner' },
+              { src: '/wendy_profile.jpeg', name: 'Wendy Zimny',    title: 'Founding Partner' },
+            ].map(({ src, name, title }) => (
+              <div key={name} className="flex flex-col items-center gap-4">
+                <div className="w-52 h-52 rounded-full overflow-hidden border-4 border-brand-warm shadow-md">
+                  <img
+                    src={src}
+                    alt={name}
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
+                <div>
+                  <p className="font-bold text-stone-900 text-lg">{name}</p>
+                  <p className="text-stone-500 text-sm mt-0.5">{title}</p>
+                </div>
+              </div>
+            ))}
           </div>
-          <div className="relative rounded-3xl overflow-hidden shadow-xl aspect-[4/3]">
-            <img
-              src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80"
-              alt="Attorney consulting with a family"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-brand-bronze/10" />
-          </div>
+
+          {/* CTA */}
+          <Link
+            to="/bios"
+            className="inline-block bg-stone-900 hover:bg-stone-700 text-white font-semibold px-10 py-4 rounded-xl transition-colors"
+          >
+            Meet Our Team
+          </Link>
         </div>
       </section>
 

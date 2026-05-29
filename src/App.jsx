@@ -13,13 +13,13 @@ export default function App() {
       {/* Marketing pages — wrapped with Navbar + Footer */}
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
+        <Route path="/bios" element={<Bios />} />
       </Route>
 
       {/* Standalone pages — own layout */}
       <Route path="/login" element={<Login />} />
       <Route path="/special-needs" element={<SpecialNeeds />} />
       <Route path="/portal" element={<Portal />} />
-      <Route path="/bios" element={<Bios />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   )
