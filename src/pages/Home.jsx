@@ -84,27 +84,23 @@ export default function Home() {
             >
               Schedule a Consultation
             </Link>
-            <a
-              href="#about"
+            <Link
+              to="/login"
               className="border border-brand-bronze text-brand-bronze hover:bg-brand-bronze hover:text-white font-semibold px-8 py-4 rounded-xl text-center transition-colors"
             >
               Learn More
-            </a>
+            </Link>
           </div>
         </div>
 
         {/* Right panel — attorney photo */}
         <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
           <img
-            src="/kim_profile.png"
-            alt="Kimberly McCoy, Attorney"
+            src="/team_photo.png"
+            alt="Zimny McCoy founding attorneys"
             className="absolute inset-0 w-full h-full object-cover object-top"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-stone-900/60 via-transparent to-transparent" />
-          <div className="absolute bottom-8 left-8 right-8">
-            <p className="text-white font-semibold text-lg font-display">Kimberly McCoy</p>
-            <p className="text-brand-bronze-light text-sm uppercase tracking-widest">Founding Attorney</p>
-          </div>
+          <div className="absolute inset-0 bg-gradient-to-r from-stone-900/40 via-transparent to-transparent" />
         </div>
       </section>
 
@@ -210,7 +206,7 @@ export default function Home() {
               Start Your Intake Form
             </Link>
             <Link
-              to="/portal"
+              to="/login"
               className="border border-brand-bronze text-brand-bronze hover:bg-brand-warm font-semibold px-8 py-4 rounded-xl transition-colors"
             >
               Existing Clients
