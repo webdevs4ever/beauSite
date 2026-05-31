@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
 import { db, getScopedCollectionName, isFirebaseConfigured } from '../lib/firebase'
 
@@ -66,6 +66,10 @@ export default function SpecialNeeds() {
         </h1>
         <p className="text-stone-500 mb-8 text-sm leading-relaxed">
           Complete this form and a member of our team will reach out to discuss how we can help your family.
+          By submitting, you agree to our{' '}
+          <Link to="/privacy" className="text-brand-bronze hover:underline">
+            Privacy Policy
+          </Link>.
         </p>
 
         {success ? (

@@ -48,7 +48,10 @@ export default function Footer() {
 
       <div className="border-t border-stone-700 px-4 sm:px-6 py-5 max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-stone-500">
         <p>© {new Date().getFullYear()} Zimny McCoy, PLLC. All rights reserved.</p>
-        <p>The information on this site is for general informational purposes only and does not constitute legal advice.</p>
+        <div className="flex items-center gap-4">
+          <p>The information on this site is for general informational purposes only and does not constitute legal advice.</p>
+          <Link to="/privacy" className="whitespace-nowrap hover:text-stone-300 transition-colors">Privacy Policy</Link>
+        </div>
       </div>
     </footer>
   )

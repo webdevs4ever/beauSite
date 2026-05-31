@@ -5,6 +5,7 @@ import Login from './pages/Login'
 import SpecialNeeds from './pages/SpecialNeeds'
 import Portal from './pages/Portal'
 import Bios from './pages/Bios'
+import Privacy from './pages/Privacy'
 import NotFound from './pages/NotFound'
 
 export default function App() {
@@ -14,6 +15,7 @@ export default function App() {
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/bios" element={<Bios />} />
+        <Route path="/privacy" element={<Privacy />} />
       </Route>
 
       {/* Standalone pages — own layout */}
