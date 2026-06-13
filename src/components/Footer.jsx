@@ -35,7 +35,13 @@ export default function Footer() {
             Contact
           </h4>
           <ul className="flex flex-col gap-2 text-sm">
-            <li>New York City, NY</li>
+            <li>1917 Hennessy Place</li>
+            <li>Bronx, NY 10453</li>
+            <li>
+              <a href="tel:+13477956568" className="hover:text-brand-bronze-light transition-colors">
+                (347) 795-6568
+              </a>
+            </li>
             <li>
               <a href="mailto:info@zimnymccoy.com" className="hover:text-brand-bronze-light transition-colors">
                 info@zimnymccoy.com
