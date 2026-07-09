@@ -60,24 +60,33 @@ export default function Home() {
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────────────────────────── */}
-      <section className="bg-stone-900 min-h-[88vh] flex items-stretch">
+      <section className="bg-brand-warm flex flex-col lg:flex-row lg:min-h-[88vh]">
+        {/* Mobile photo — full width, shown only below lg */}
+        <div className="lg:hidden w-full h-[28rem] relative overflow-hidden">
+          <img
+            src="/team_photo.png"
+            alt="Zimny McCoy founding attorneys"
+            className="absolute inset-0 w-full h-full object-cover object-top"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-brand-warm/60" />
+        </div>
+
         {/* Left panel — firm description */}
-        <div className="flex-1 lg:w-1/2 flex flex-col justify-center px-8 sm:px-12 lg:px-20 py-20 bg-brand-warm">
-          <p className="text-brand-bronze text-sm font-semibold uppercase tracking-widest mb-5">
+        <div className="flex-1 lg:w-1/2 flex flex-col justify-center px-6 sm:px-10 lg:px-20 py-10 lg:py-20">
+          <p className="text-brand-bronze text-xs sm:text-sm font-semibold uppercase tracking-widest mb-4">
             Special Education Attorneys · New York City
           </p>
-          <h1 className="font-display text-4xl sm:text-5xl lg:text-[3.25rem] font-bold text-stone-900 leading-tight mb-6">
+          <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-900 leading-tight mb-5">
             Advocating for Families with Special Education Needs
           </h1>
-          <p className="text-stone-600 text-base sm:text-lg leading-relaxed mb-4 max-w-lg">
+          <p className="text-stone-600 text-sm sm:text-base leading-relaxed mb-3 max-w-lg">
             Zimny McCoy, PLLC is a New York City law firm exclusively dedicated to special education law.
             We represent families navigating IEPs, 504 plans, due process hearings, and federal court proceedings.
           </p>
-          <p className="text-stone-500 text-sm leading-relaxed mb-10 max-w-lg">
-            Our attorneys have helped thousands of NYC families secure the services, placements, and
-            compensatory education their children are legally entitled to.
+          <p className="text-stone-600 text-sm sm:text-base leading-relaxed mb-8 max-w-lg">
+            Kim and Wendy were New York City Teaching Fellows in the same cohort in 2009 (cohort 18), and both taught special education in New York City schools for several years. More recently, Lisa, Kim and Wendy all worked together at another law firm practicing education law and collaborating with one another for several years. Kim, Lisa and Wendy all have significant experience in the field of special education, bring different strengths to the firm, and have a passion for special education advocacy.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-3">
             <Link
               to="/special-needs"
               className="bg-brand-bronze hover:bg-brand-bronze-dark text-white font-semibold px-8 py-4 rounded-xl text-center transition-colors"
@@ -93,14 +102,14 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Right panel — attorney photo */}
+        {/* Right panel — desktop only */}
         <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
           <img
             src="/team_photo.png"
             alt="Zimny McCoy founding attorneys"
             className="absolute inset-0 w-full h-full object-cover object-top"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-stone-900/40 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-warm/40 via-transparent to-transparent" />
         </div>
       </section>
 
