@@ -1,7 +1,7 @@
 const SECTIONS = [
   {
     heading: 'Your Rights',
-    body: `By providing a telephone number and submitting the form, you are consenting to be contacted by SMS text message and agreeing to our Privacy Policy. Message frequency may vary. Message and data rates may apply. Reply STOP to opt out of further messaging. Reply HELP for more information.`,
+    body: `By providing a telephone number and submitting the form, you are consenting to be contacted by SMS text message and agreeing to our Privacy Policy. Message frequency may vary. Message and data rates may apply. Reply STOP to opt out of further messaging. Reply HELP for more information.\n\nNo mobile information will be shared with third parties/affiliates for marketing/promotional purposes. All other categories exclude text messaging originator opt-in data and consent; this information will not be shared with any third parties.`,
   },
 ]
 

@@ -38,8 +38,8 @@ export default function Footer() {
             <li>1917 Hennessy Place</li>
             <li>Bronx, NY 10453</li>
             <li>
-              <a href="tel:+13477956568" className="hover:text-brand-bronze-light transition-colors">
-                (347) 795-6568
+              <a href="tel:+13477956567" className="hover:text-brand-bronze-light transition-colors">
+                (347) 795-6567
               </a>
             </li>
             <li>
