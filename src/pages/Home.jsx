@@ -64,11 +64,10 @@ export default function Home() {
         {/* Mobile photo — full width, shown only below lg */}
         <div className="lg:hidden w-full h-[28rem] relative overflow-hidden">
           <img
-            src="/team_photo.png"
+            src="/zimnymccoy_mobile.png"
             alt="Zimny McCoy founding attorneys"
-            className="absolute inset-0 w-full h-full object-cover object-top"
+            className="absolute inset-0 w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-brand-warm/60" />
         </div>
 
         {/* Left panel — firm description */}
